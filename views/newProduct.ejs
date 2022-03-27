@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs") -%> 
+</head>
+<body>
+    <%- include("partials/header.ejs") -%> 
+    <aside class="back">
+        <a href="/" class="back-btn">&#129144;</a>
+        <p class="back-paragraph">Новый продукт</p>
+    </aside>
+    <main class="container">
+
+        <aside class="container-info">
+            <div class="container-info__div">
+                <div class="container-info__logo">
+                    LENOVO
+                </div>
+                <p >
+                    Благодарим за выбор нашей платформы.
+                </p>
+            </div>
+            <img class="container-info__img" width="140px" height="100px" src="/images/laptop.jpg" alt="verification">
+            <p class="container-info__p">
+                Регистрация продукта выполняется легко и быстро
+            </p>
+        </aside>
+
+        <form class="new-blog__container" action="/api/products" method="POST" >
+            <fieldset class="new-blog__label">
+                Title
+                <input class="new-blog__input" type="text" name="title" >
+            </fieldset>
+            <fieldset class="new-blog__label">
+                Description
+                <textarea class="new-blog__input" cols="30" rows="5" name="description"></textarea>
+            </fieldset>
+            <fieldset class="new-blog__label">
+                Price
+                <input class="new-blog__input" type="text" name="price" >
+            </fieldset>
+            
+            <button class="new-blog__btn" type="submit">Сохранить</button>
+
+        </form>
+    </main>
+    <%- include("partials/footer.ejs") -%> 
+
+</body>
+</html>

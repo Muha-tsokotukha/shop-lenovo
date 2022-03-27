@@ -1,0 +1,37 @@
+.footer{
+    background-color: #f8f8f8;
+    padding: 20px;
+    margin-top: 20px;
+    color: #555;
+    display: grid;
+    gap: 25px;
+}
+.footer-up{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.footer-down{
+    display: flex;
+    gap: 20px;
+}
+.footer-country__header{
+    font-weight: bold;
+}
+.footer-country__select{
+    border: 1px solid #555;
+    color: #555;
+    padding: 5px 10px;
+    width: 200px;
+    outline: none;
+}
+.footer-country{
+    display: grid;
+    gap: 10px;
+}
+.footer-down__info{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+}

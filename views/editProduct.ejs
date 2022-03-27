@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs") -%> 
+</head>
+<body>
+    <%- include("partials/header.ejs") -%> 
+    <aside class="back">
+        <a href="/" class="back-btn">&#129144;</a>
+        <p class="back-paragraph">Редактировать продукт</p>
+    </aside>
+    <main class="container edit-product">
+
+        <form class="new-blog__container" onsubmit="onSubmit(this,event)" >
+            <input type="hidden" name="_id" value="<%=product._id%>">
+            <fieldset class="new-blog__label">
+                Title
+                <input class="new-blog__input" type="text" name="title" value="<%=product.title%>">
+            </fieldset>
+            <fieldset class="new-blog__label">
+                Description
+                <textarea class="new-blog__input" cols="30" rows="5" name="description" ><%=product.description%></textarea>
+            </fieldset>
+            <fieldset class="new-blog__label">
+                Price
+                <input class="new-blog__input" type="text" name="price" value="<%=product.price%>">
+            </fieldset>
+            
+            <button class="new-blog__btn" type="submit">Сохранить</button>
+
+        </form>
+    </main>
+    <%- include("partials/footer.ejs") -%> 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.0/axios.min.js"></script>
+    <script src="/js/editProduct.js"></script>
+</body>
+</html>

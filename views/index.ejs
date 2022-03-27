@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs") -%> 
+</head>
+<body>
+    <%- include("partials/header.ejs") -%> 
+
+    <main class="main-products">
+
+        <article class="main-products__item">
+            <h2 class="main-products__category">Ноутбуки</h2>
+            <section class="main-products__products">
+                <%
+                    products.forEach( ( product ) => {
+                %>
+                    <div class="main-products__product">
+                        <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcS6z7pveUf3UYnwPKdwp_g90Ma-zZA2mG1-d3PEqh4p9am8rnHsQlOMGw88ndww69vSsMBTz6807w&usqp=CAc" alt="Product image">
+                        <p><%=product.title %></p>
+                        <p><%=product.description%></p>
+                        <p><%=product.price %></p>
+                        <ul class="main-products__editing">
+                            <a onclick="deleteProduct('<%=product._id %>')" class="main-products__delete">&#10006;</a> 
+                            <a href="/editProduct?id=<%=product._id %>" class="main-products__edit">Edit</a>
+                        </ul>   
+                    </div>
+
+                <% 
+                    });    
+                %> 
+            </section>
+        </article>
+
+    </main>
+
+    <%- include("partials/footer.ejs") -%> 
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.0/axios.min.js"></script>
+    <script src="/js/profile.js"></script>
+
+</body>
+</html>
