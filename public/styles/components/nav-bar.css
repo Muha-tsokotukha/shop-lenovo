@@ -156,3 +156,15 @@
     top: 35px;
     transition: 0.4s;
 }
+.btn-logout{
+    border: none;
+    border-radius: 3px;
+    background-color: red;
+    color: #ffffff;
+    cursor: pointer;
+    text-decoration: none;
+    padding: 5px;
+}
+.btn-logout:hover{
+    background-color: rgba(255, 0, 0, 0.575);
+}

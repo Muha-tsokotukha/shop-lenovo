@@ -11,7 +11,7 @@
     </aside>
     <main class="container edit-product">
 
-        <form class="new-blog__container" onsubmit="onSubmit(this,event)" >
+        <form class="new-blog__container" onsubmit="onSubmit(this,event)" enctype="multipart/form-data" >
             <input type="hidden" name="_id" value="<%=product._id%>">
             <fieldset class="new-blog__label">
                 Title
@@ -25,7 +25,10 @@
                 Price
                 <input class="new-blog__input" type="text" name="price" value="<%=product.price%>">
             </fieldset>
-            
+            <fieldset class="new-blog__label">
+                <input class="new-blog__input" type="file" name="image">
+            </fieldset>
+
             <button class="new-blog__btn" type="submit">Сохранить</button>
 
         </form>

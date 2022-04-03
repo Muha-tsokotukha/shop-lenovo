@@ -17,7 +17,7 @@ function showProducts(prods){
     for(let i=0;i< prods.length; i++){
         prodsHTML += `
         <div class="main-products__product">
-            <img src="https://encrypted-tbn0.gstatic.com/shopping?q=tbn:ANd9GcS6z7pveUf3UYnwPKdwp_g90Ma-zZA2mG1-d3PEqh4p9am8rnHsQlOMGw88ndww69vSsMBTz6807w&usqp=CAc" alt="Product image">
+            <img width="200px" height="200px" src="${prods[i].img}" alt="Product image">
             <p>${prods[i].title}</p>
             <p>${prods[i].description}</p>
             <p>${prods[i].price}</p>

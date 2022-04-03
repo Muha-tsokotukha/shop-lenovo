@@ -26,7 +26,7 @@
             </p>
         </aside>
 
-        <form class="new-blog__container" action="/api/products" method="POST" >
+        <form class="new-blog__container" action="/api/products" method="POST" enctype="multipart/form-data" >
             <fieldset class="new-blog__label">
                 Title
                 <input class="new-blog__input" type="text" name="title" >
@@ -38,6 +38,9 @@
             <fieldset class="new-blog__label">
                 Price
                 <input class="new-blog__input" type="text" name="price" >
+            </fieldset>
+            <fieldset class="new-blog__label">
+                <input type="file" name="image" >
             </fieldset>
             
             <button class="new-blog__btn" type="submit">Сохранить</button>

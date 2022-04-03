@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs") -%> 
+</head>
+<body>
+    <%- include("partials/header.ejs") -%> 
+    <aside class="back">
+        <a href="/" class="back-btn">&#129144;</a>
+        <p class="back-paragraph">Регистрация</p>
+    </aside>
+    <main class="container edit-product">
+        <form class="new-blog__container" action="/api/auth/signup" method="POST">
+                <fieldset class="new-blog__label">
+                    email
+                    <input class="new-blog__input" type="text" name="email" >
+                </fieldset>
+                <fieldset class="new-blog__label">
+                    full name
+                    <input class="new-blog__input"  name="full_name" >
+                </fieldset>
+                <fieldset class="new-blog__label">
+                    nickname
+                    <input class="new-blog__input"  name="nickname" >
+                </fieldset>
+                <fieldset class="new-blog__label">
+                    password
+                    <input class="new-blog__input" type="password" name="password" >
+                </fieldset>
+                <fieldset class="new-blog__label">
+                    confirm password
+                    <input class="new-blog__input" type="password" name="password2" >
+                </fieldset>
+                <!-- <fieldset class="new-blog__label">
+                    <input class="new-blog__input" type="file" name="image">
+                </fieldset> -->
+                <button class="new-blog__btn" type="submit">Сохранить</button>
+
+
+        </form>
+    </main>
+    <%- include("partials/footer.ejs") -%> 
+</body>
+</html>

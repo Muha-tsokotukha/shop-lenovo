@@ -93,12 +93,23 @@
             </li>
         </ul>
         <section class="subcategories-account">
+            <% 
+                if(typeof currentUser === 'object' && currentUser){    
+            %> 
+            <p><%=currentUser.nickname%></p>
+            <a href="/api/auth/signout" class="btn-logout">Выйти</a>
+            <%
+                }else{
+            %>
             <p>Учетная запись</p>
             <img width="16px" height="16px" src="https://static.lenovo.com/fea/_build/img/52b8153.svg" alt="">
             <aside class="subcategories-account__dropdown">
-                <a class="subcategories-account__link" href="#">Sign in</a>
-                <a class="subcategories-account__link" href="#">Sign up</a>
+                <a class="subcategories-account__link" href="/login">Sign in</a>
+                <a class="subcategories-account__link" href="/register">Sign up</a>
             </aside>
+            <%
+                }
+            %>
         </section>
     </article>
 </header>

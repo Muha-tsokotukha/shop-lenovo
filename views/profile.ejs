@@ -19,6 +19,10 @@
                         <p><%=product.title %></p>
                         <p><%=product.description%></p>
                         <p><%=product.price %></p>
+                        <ul class="main-products__editing">
+                            <a onclick="deleteProduct('<%=product._id %>')" class="main-products__delete">&#10006;</a> 
+                            <a href="/editProduct?id=<%=product._id %>" class="main-products__edit">Edit</a>
+                        </ul>   
                     </div>
 
                 <% 
@@ -30,6 +34,9 @@
     </main>
 
     <%- include("partials/footer.ejs") -%> 
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.0/axios.min.js"></script>
+    <script src="/js/profile.js"></script>
 
 </body>
 </html>

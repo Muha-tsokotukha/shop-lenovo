@@ -8,7 +8,8 @@ const ProductSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
-    }
+    },
+    img: String 
 });
 
 module.exports = mongoose.model("Product", ProductSchema);

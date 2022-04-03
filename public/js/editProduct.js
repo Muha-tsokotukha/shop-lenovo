@@ -1,11 +1,23 @@
+const nickname = localStorage.getItem('nickname');
+
 function onSubmit(form, e){
     e.preventDefault();
-    axios.put("/api/products", {
-        _id: form.elements._id.value,
-        title: form.elements.title.value,
-        description: form.elements.description.value,
-        price: form.elements.price.value
-    }).then( res => {
-        location.replace("/");
-    } )
+
+    let sendData = new FormData();
+    sendData.append("_id" , form.elements._id.value);
+    sendData.append("title" , form.elements.title.value);
+    sendData.append("description" , form.elements.description.value);
+    sendData.append("price" , form.elements.price.value);
+    sendData.append("image" , form.elements.image.files[0]);
+    axios({
+        url: "/api/products",
+        method: "PUT",
+        header: {
+            "Content-type": "multipart/form-data"
+        },
+        data: sendData
+    }).then(()=>{
+        location.replace("/profile"+nickname);
+    });
+    
 }

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include("partials/head.ejs") -%> 
+</head>
+<body>
+    <%- include("partials/header.ejs") -%> 
+    <aside class="back">
+        <a href="/" class="back-btn">&#129144;</a>
+        <p class="back-paragraph">Войти</p>
+    </aside>
+    <main class="container edit-product">
+        <form class="new-blog__container" action="/api/auth/signin" method="POST">
+                <fieldset class="new-blog__label">
+                    email
+                    <input class="new-blog__input" type="text" name="email" >
+                </fieldset>
+                <fieldset class="new-blog__label">
+                    password
+                    <input class="new-blog__input" type="password" name="password" >
+                </fieldset>
+               
+                <button class="new-blog__btn" type="submit">Сохранить</button>
+
+
+        </form>
+    </main>
+    <%- include("partials/footer.ejs") -%> 
+</body>
+</html>
