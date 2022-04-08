@@ -16,8 +16,8 @@ function onSubmit(form, e){
             "Content-type": "multipart/form-data"
         },
         data: sendData
-    }).then(()=>{
-        location.replace("/profile"+nickname);
+    }).then((res)=>{
+        location.replace("/profile/"+nickname);
     });
     
 }
