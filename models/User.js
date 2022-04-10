@@ -14,7 +14,8 @@ const UserSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    avatar: String 
+    avatar: String,
+    google_id: String
 });
 
 UserSchema.pre("save", function(next){

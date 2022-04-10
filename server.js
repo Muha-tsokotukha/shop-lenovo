@@ -7,6 +7,38 @@ const multer  = require('multer');
 const path = require("path");
 const passport = require("passport");
 const LocalStrategy = require("passport-local");
+const GoogleStrategy = require("passport-google-oauth20");
+const MongooseStore = require("mongoose-express-session")();
+const mongooseStore = new MongooseStore({
+    mongoose: mongoose,
+    store: require("express-session").Store
+});
+passport.use(new GoogleStrategy({
+        clientID: "691179293219-gofsbitn27tsbe1bv40klm2vk6lcu8qf.apps.googleusercontent.com",
+        clientSecret: "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",
+        callbackURL: 'http://localhost:3000/api/auth/google',
+        scope: ['openid', 'profile', 'email'],
+        state: true
+    },
+    async function(accessToken, refreshToken, profile, cb) {
+        console.log(accessToken, refreshToken, profile, cb);
+        let user = await User.findOne({google_id: profile.id}).exec();
+        if( !user ){
+            try{
+                user = await new User({
+                    email: profile.emails[0].value,
+                    full_name: profile.displayName,
+                    nickname: profile.emails[0].value,
+                    avatar: profile.photos[0].value,
+                    google_id: profile.id
+                }).save();
+            }catch(err){
+                cb(err,null);
+            }
+        }
+        cb(null,user);
+    }
+));
 
 passport.use(new LocalStrategy(
     {
@@ -61,7 +93,7 @@ app.use(express.static(__dirname + '/public'));
 app.use(express.urlencoded());
 app.use(express.json());
 app.use(require('cookie-parser')());
-app.use(require('express-session')({ secret: 'keyboard cat', resave: true, saveUninitialized: true }));
+app.use(require('express-session')({ secret: 'keyboard cat', resave: false,rolling:false, saveUninitialized: true,store:mongooseStore }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.set("view engine", "ejs");
@@ -100,7 +132,7 @@ app.get("/editProduct", async (req, res)=>{
 
 // INDEX GET API
 app.get("/", async (req, res)=>{
-    const products = await Product.find().exec();
+    const products = await Product.find().populate('author', 'nickname').exec();
     res.render("index.ejs", {
         products,
         currentUser: req.user
@@ -123,7 +155,10 @@ app.get("/register", (req, res)=>{
     res.render("register.ejs");
 });
 app.get("/profile/:nickname",async (req, res)=>{
-    const products = await Product.find().exec();
+    const author = await User.findOne({nickname: req.params.nickname}).exec();
+    if(!author)return res.status(404).send("Not Found");
+
+    const products = await Product.find( {author: author._id} ).exec();
     res.render("profile.ejs", {
         products,
         currentUser: req.user
@@ -133,6 +168,15 @@ app.get("/api/auth/signout", (req,res)=>{
     req.logOut();
     res.redirect('/');
 })
+app.get('/api/auth/google/signin',
+    passport.authenticate('google'));
+app.get('/api/auth/google', 
+    passport.authenticate('google', { failureRedirect: '/login?error=2' }),
+    function(req, res) {
+        // Successful authentication, redirect home.
+        res.redirect('/profile/'+req.user.nickname);
+});
+
 // POST API
 
 // Add new product
@@ -146,7 +190,8 @@ app.post("/api/products", upload.single('image') , async  (req, res)=>{
         title: req.body.title,
         description: req.body.description,
         price: req.body.price,
-        img: imagePath
+        img: imagePath,
+        author: req.user._id,
     }).save();
     res.redirect("/profile/"+req.user.nickname);
 });

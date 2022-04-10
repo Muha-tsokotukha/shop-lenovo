@@ -8,8 +8,8 @@
     if(typeof currentUser === 'object' && currentUser){
 %> 
         <script>
-            localStorage.setItem('nickname', <%=currentUser.nickname%> )
-            localStorage.setItem('user_id', <%=currentUser._id%> )
+            localStorage.setItem('nickname', '<%=currentUser.nickname%>' )
+            localStorage.setItem('user_id', '<%=currentUser._id%>' )
         </script>
 <% 
     }

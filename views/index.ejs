@@ -19,6 +19,9 @@
                         <p><%=product.title %></p>
                         <p><%=product.description%></p>
                         <p><%=product.price %></p>
+                        <a href="/profile/<%=product.author.nickname %>">
+                            <p><%=product.author.nickname %></p>
+                        </a>
                     </div>
 
                 <% 
