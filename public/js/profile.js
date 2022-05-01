@@ -1,4 +1,7 @@
 const prodsDiv = document.querySelector(".main-products__products");
+let profileNickname = location.pathname.split("/");
+profileNickname = profileNickname[profileNickname.length-1];
+
 function deleteProduct(id){
     axios.delete(`/api/products/${id}` ).then(res =>{
         getProducts();
@@ -6,7 +9,7 @@ function deleteProduct(id){
 }
 
 function getProducts(){
-	axios.get(`/api/products`).then(res=>{
+	axios.get(`/api/products/profile/${profileNickname}`).then(res=>{
 		showProducts(res.data);
     });
 }
@@ -23,7 +26,7 @@ function showProducts(prods){
             <p>${prods[i].price}</p>
             <ul class="main-products__editing">
                 <a onclick="deleteProduct('${prods[i]._id}')" class="main-products__delete">&#10006;</a>    
-                <a href="/editProduct?id=<%=product._id %>" class="main-products__edit">Edit</a>
+                <a href="/editProduct?id=${prods[i]._id}" class="main-products__edit">Edit</a>
             </ul> 
         </div>
         `;

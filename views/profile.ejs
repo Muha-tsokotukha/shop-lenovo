@@ -19,10 +19,17 @@
                         <p><%=product.title %></p>
                         <p><%=product.description%></p>
                         <p><%=product.price %></p>
+
+                        <%
+                            if(currentUser.nickname === nickname){
+                        %>
                         <ul class="main-products__editing">
                             <a onclick="deleteProduct('<%=product._id %>')" class="main-products__delete">&#10006;</a> 
                             <a href="/editProduct?id=<%=product._id %>" class="main-products__edit">Edit</a>
                         </ul>   
+                        <%
+                            }
+                        %>
                     </div>
 
                 <% 

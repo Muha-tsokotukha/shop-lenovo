@@ -8,6 +8,9 @@
     font-weight: bold;
     font-size: 14px;
 }
+.nav-categories__logo{
+    text-decoration: none;
+}
 .nav-categories__searchbar{
     display: flex;
 }

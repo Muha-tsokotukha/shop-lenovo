@@ -10,7 +10,7 @@ function onSubmit(form, e){
     sendData.append("price" , form.elements.price.value);
     sendData.append("image" , form.elements.image.files[0]);
     axios({
-        url: "/api/products",
+        url: "/api/products/" + form.elements._id.value,
         method: "PUT",
         header: {
             "Content-type": "multipart/form-data"
